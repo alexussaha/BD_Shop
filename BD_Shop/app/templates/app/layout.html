@@ -31,6 +31,13 @@
             </div>
         </div>
     </div>
+    <!-- Прелоадер -->
+  <div class="preloader">
+    <div class="preloader__row">
+      <div class="preloader__item"></div>
+      <div class="preloader__item"></div>
+    </div>
+  </div>
 
     <div class="container body-content">
 {% block content %}{% endblock %}
@@ -43,7 +50,15 @@
     <script src="{% static 'app/scripts/jquery-1.10.2.js' %}"></script>
     <script src="{% static 'app/scripts/bootstrap.js' %}"></script>
     <script src="{% static 'app/scripts/respond.js' %}"></script>
-{% block scripts %}{% endblock %}
+    <script>
+    $(window).on('load', function () {
+      $('.preloader').fadeOut().end().delay(400).fadeOut('slow');
+    });
+    </script>
+{% block scripts %}
+    
+    
+{% endblock %}
 
 </body>
 </html>
