@@ -338,3 +338,8 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+/BD_Shop/*.sqlite3
+/BD_Shop/env
+/BD_Shop/env1
+/BD_Shop/app/__pycache__
+/BD_Shop/BD_Shop/__pycache__
