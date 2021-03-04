@@ -10,10 +10,7 @@ from app import forms, views
 
 
 urlpatterns = [
-    path('', views.home, name='home'),
-    path('contact/', views.contact, name='contact'),
-    path('about/', views.about, name='about'),
-    path('login/',
+    path('',
          LoginView.as_view
          (
              template_name='app/login.html',
@@ -25,6 +22,10 @@ urlpatterns = [
              }
          ),
          name='login'),
+    path('home/', views.home, name='home'),
+    path('contact/', views.contact, name='contact'),
+    path('about/', views.about, name='about'),
+    
     path('logout/', LogoutView.as_view(next_page='/'), name='logout'),
     path('admin/', admin.site.urls),
 ]

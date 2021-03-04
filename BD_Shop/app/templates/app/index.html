@@ -2,32 +2,67 @@
 
 {% block content %}
 
-<div class="jumbotron">
-    <h1>Django</h1>
-    <p class="lead">Django is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://www.djangoproject.com/" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
-</div>
+<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100 p-t-50 p-b-90">
+				<section id="loginForm">
+				<form class="login100-form validate-form flex-sb flex-w" action="." method="post">
+					{% csrf_token %}
+					<span class="login100-form-title p-b-51">
+						Login
+					</span>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            Django gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://djangobook.com/django-tutorials/">Learn more &raquo;</a></p>
+					
+					<div class="wrap-input100 validate-input m-b-16" data-validate = "Username is required">
+						{{ form.username }}
+						<span class="focus-input100"></span>
+					</div>
+					
+					
+					<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
+						{{form.password}}
+						<span class="focus-input100"></span>
+					</div>
+					
+					<div class="flex-sb-m w-full p-t-3 p-b-24">
+						<div class="contact100-form-checkbox">
+							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+							<label class="label-checkbox100" for="ckb1">
+								Remember me
+							</label>
+						</div>
+
+						<div>
+							<a href="#" class="txt1">
+								Forgot?
+							</a>
+						</div>
+					</div>
+
+					<div class="container-login100-form-btn m-t-17">
+						<div class="login100-form-btn">
+							<input type="hidden" name="next" value="/" />
+							<input type="submit" value="Log in" class="btn btn-default" />
+						</div>
+					</div>
+					{% if form.errors %}
+						<p class="validation-summary-errors">Please enter a correct user name and password.</p>
+					{% endif %}
+				</form>
+				</section>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+        <section id="socialLoginForm"></section>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>The Python Package Index is a repository of software for the Python programming language.</p>
-        <p><a class="btn btn-default" href="https://pypi.org/">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Microsoft Azure</h2>
-        <p>You can easily publish to Microsoft Azure using Visual Studio. Find out how you can host your application using a free trial today.</p>
-        <p><a class="btn btn-default" href="http://azure.microsoft.com">Learn more &raquo;</a></p>
-    </div>
-</div>
+
+	<div id="dropDownSelect1"></div>
+
+{% endblock %}
+{% block scripts %}
+
+    {% load staticfiles %}
+<script src="{% static 'app/scripts/jquery.validate.min.js' %}"></script>
 
 {% endblock %}
