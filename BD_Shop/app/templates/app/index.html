@@ -1,66 +1,54 @@
 {% extends "app/layout.html" %}
 
 {% block content %}
+{% load my_filters %}
 
-<div class="limiter">
-		<div class="container-login100">
-			<div class="wrap-login100 p-t-50 p-b-90">
-				<section id="loginForm">
-				<form class="login100-form validate-form flex-sb flex-w" action="." method="post">
-					{% csrf_token %}
-					<span class="login100-form-title p-b-51">
-						Login
-					</span>
+<h1>Fancy Buttons</h1>
+<p>Hover over any button and enjoy the magic.</p>
 
-					
-					<div class="wrap-input100 validate-input m-b-16" data-validate = "Username is required">
-						{{ form.username }}
-						<span class="focus-input100"></span>
-					</div>
-					
-					
-					<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
-						{{form.password}}
-						<span class="focus-input100"></span>
-					</div>
-					
-					<div class="flex-sb-m w-full p-t-3 p-b-24">
-						<div class="contact100-form-checkbox">
-							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-							<label class="label-checkbox100" for="ckb1">
-								Remember me
-							</label>
-						</div>
 
-						<div>
-							<a href="#" class="txt1">
-								Forgot?
-							</a>
-						</div>
-					</div>
 
-					<div class="container-login100-form-btn m-t-17">
-						<div class="login100-form-btn">
-							<input type="hidden" name="next" value="/" />
-							<input type="submit" value="Log in" class="btn btn-default" />
-						</div>
-					</div>
-					{% if form.errors %}
-						<p class="validation-summary-errors">Please enter a correct user name and password.</p>
-					{% endif %}
-				</form>
-				</section>
-			</div>
-		</div>
-	</div>
-	<div class="col-md-4">
-        <section id="socialLoginForm"></section>
-    </div>
 
-	<div id="dropDownSelect1"></div>
+<div class="cont">
+    
+
+</div>
+<button class="custom-btn btn-1" onclick="createElementsInside()">Open more</button>
+
+
 
 {% endblock %}
 {% block scripts %}
+<script>
+
+    var my_data = [
+    {% for deps in departments %}
+        "{{ deps }}"
+    {% if not loop.last %},{% endif %}
+    {% endfor %}
+        ];
+    var i = 0
+    var innerHtml = "";
+    var devHtml = "";
+    function createElementsInside() {
+        devHtml+='<div class="buttons-coll'+' ' + i + '"></div>'
+        $(".cont").html(devHtml);
+        for (var j = i; j < i+3; j++) {
+               innerHtml += '<button class="custom-btn btn-1">' + my_data[j]+'</button>';
+               
+        }
+        $(".buttons-coll "+ i).html(innerHtml);
+        if(i+3 < my_data.length){
+                    i = i+3;
+                     }
+                else{
+                    i = my_data.length;
+                }
+     
+    }
+
+    
+</script>
 
     {% load staticfiles %}
 <script src="{% static 'app/scripts/jquery.validate.min.js' %}"></script>
